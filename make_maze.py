@@ -8,7 +8,6 @@ input_seed = sys.argv[4]
 output_file = sys.argv[5]
 random.seed(input_seed)
 
-
 graph = {}
 
 for i in range(0, n*n):
@@ -56,25 +55,21 @@ for i in range(0, n*n):
         neighbours.append(i-n)
         graph[i] = random.sample(neighbours, len(neighbours))
    
-print(graph)
-
-
 start= start_x*n + start_y       
 
 print (start)
 def recursive_dfs(graph, start, path=[]):
-  path=path+[start]
+  path.append(start)
   for node in graph[start]:    
     if not node in path:
       path=recursive_dfs(graph, node, path)
-  #print (path)
   return path
 
 
-
 path=recursive_dfs(graph, start, path=[])
+print(path)
 def filec(path):
-    file = open("newfile.txt", "w")
+    file = open(output_file, "w")
     for i in range (0,n*n-1):
         x=path[i]/n
         y=path[i]%n
